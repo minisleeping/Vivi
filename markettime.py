@@ -79,4 +79,4 @@ async def my_background_task():
 				startlp = 1
 
 client.loop.create_task(my_background_task())
-client.run('NDUwNDQxNTEyMDczOTUzMjgx.DezR3Q.wYcfD_UC1ATdw1fy1XYvdOLkm2E')
+client.run(BDOTIME_TOKEN)
