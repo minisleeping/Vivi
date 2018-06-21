@@ -1,1 +1,1 @@
-worker: python markettime.py
+python markettime.py
