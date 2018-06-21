@@ -1,7 +1,5 @@
 import discord
 import asyncio
-from discord import Game
-from discord.ext.commands import Bot
 import datetime
 
 DN = [0,1,0,1,0,1,0,1,0,1,0,1]
