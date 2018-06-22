@@ -1,6 +1,9 @@
 import discord
 import asyncio
+from discord import Game
+from discord.ext.commands import Bot
 import datetime
+import os
 
 DN = [0,1,0,1,0,1,0,1,0,1,0,1]
 time = [[2,40],[3,20],[6,40],[7,20],[10,40],[11,20],[14,40],[15,20],[18,40],[19,20],[22,40],[23,20]]
@@ -77,4 +80,4 @@ async def my_background_task():
 				startlp = 1
 
 client.loop.create_task(my_background_task())
-client.run('BDOTIME_TOKEN')
+client.run(os.getenv('BDOTIME_TOKEN'))
