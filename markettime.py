@@ -4,6 +4,8 @@ from discord import Game
 from discord.ext.commands import Bot
 import datetime
 import os
+import pytz
+tz = pytz.timezone('Asia/Bangkok')
 
 DN = [0,1,0,1,0,1,0,1,0,1,0,1]
 time = [[2,40],[3,20],[6,40],[7,20],[10,40],[11,20],[14,40],[15,20],[18,40],[19,20],[22,40],[23,20]]
@@ -24,7 +26,7 @@ async def on_ready():
 async def my_background_task():
 	await client.wait_until_ready()
 	while not client.is_closed:
-		now = datetime.datetime.now()
+		now = datetime.datetime.now(tz)
 		hour = (now.hour)
 		mine = (now.minute)
 		x = 0
@@ -49,7 +51,7 @@ async def my_background_task():
 
 		startlp = 0
 		while  startlp == 0:
-			now = datetime.datetime.now()
+			now = datetime.datetime.now(tz)
 			hour = (now.hour)
 			mine = (now.minute)
 			if int(hour) == 23 and int(mine) >= 20:
