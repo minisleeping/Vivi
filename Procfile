@@ -1,3 +1,3 @@
-worker: python markettime.py
-worker: python bdokutum.py
-worker: python bdokzarka.py
+worker1: python markettime.py
+worker2: python bdokutum.py
+worker3: python bdokzarka.py
