@@ -1,1 +1,1 @@
-worker: python markettime.py
+web: gunicorn bot:app --log-file - (optional)
