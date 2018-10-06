@@ -8,7 +8,6 @@ def hello():
 
 @app.route("/webhook", methods=['POST'])
 def webhook():
-if request.method == 'POST':
     return 'OK'
     
 if __name__ == "__main__":
