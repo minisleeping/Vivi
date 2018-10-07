@@ -41,7 +41,9 @@ def find_inExcel(Value):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    profile = line_bot_api.get_profile(event.source.userId)
+    soruser = event.source
+    print soruser.userId
+    profile = line_bot_api.get_profile(soruser.userId)
     print (profile)
     if find_inExcel(event.message.text) != None:
         row_value = find_inExcel(event.message.text)
