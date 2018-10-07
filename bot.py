@@ -41,7 +41,7 @@ def find_inExcel(Value):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    soruser = event.source
+    soruser = dict(event.source)
     print (soruser)
     print (soruser["userId"])
     if find_inExcel(event.message.text) != None:
