@@ -37,7 +37,7 @@ def find_inExcel(Value):
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
         if row_value[2] == Value:
-            return row_value
+            return str(row_value[5])
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
