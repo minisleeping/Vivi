@@ -34,9 +34,9 @@ def find_inExcel(Value):
     path = "testdatabase.xlsx"
     wb = xlrd.open_workbook(path)
     sheet = wb.sheet_by_index(0)
-    print (sheet)
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
+        print (row_value)
         if row_value[2] == Value:
             return str(row_value[4])
 
