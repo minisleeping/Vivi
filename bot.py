@@ -42,8 +42,10 @@ def find_inExcel(Value):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     soruser = str(event.source)
-    print (soruser)
-    print (soruser["userId"])
+    for key, value in soruser.iteritems():
+        if key == 'userId':
+            iduser = value
+    print (iduser)
     if find_inExcel(event.message.text) != None:
         row_value = find_inExcel(event.message.text)
         backtext = str(row_value[2]) + ' ราคา = ' + str(row_value[4]) + ' บาท'
