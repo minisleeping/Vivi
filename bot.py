@@ -45,17 +45,16 @@ def handle_message(event):
     for key, value in soruser.items():
         if key == 'userId':
             iduser = value
-    print (iduser)
     if find_inExcel(event.message.text) != None:
         row_value = find_inExcel(event.message.text)
         backtext = str(row_value[2]) + ' ราคา = ' + str(row_value[4]) + ' บาท'
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=backtext))
-    elif event.message.text.upper() == 'REQUESTBOT':
+    elif event.message.text.upper() == 'GETID':
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text='กรุณานำรหัสดังต่อไปนี้ให้กับ Admin\n' + [soruser['userId']][0]))
+            TextSendMessage(text='กรุณานำรหัสดังต่อไปนี้ให้กับ Admin\n' + iduser))
 
 
 if __name__ == "__main__":
