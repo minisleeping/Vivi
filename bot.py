@@ -43,7 +43,8 @@ def find_inExcel(Value):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     row_value = find_inExcel(event.message.text)
-    backtext = row_value[2] + ' ราคา ' + str(row_value[4]) 
+    print (row_value)
+    backtext = str(row_value[2]) + ' price is ' + str(row_value[4]) 
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=backtext))
