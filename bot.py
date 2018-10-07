@@ -30,34 +30,32 @@ def webhook():
 
     return 'OK'
 
-def find_inExcel(Value):
-    path = "testdatabase.xlsx"
+def find_inExcel(Value, col, path):
     wb = xlrd.open_workbook(path)
     sheet = wb.sheet_by_index(0)
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
-        if str(row_value[1]).startswith(Value):
+        if str(row_value[col]).startswith(Value):
             return row_value
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    soruser = eval(str(event.source))
-    for key, value in soruser.items():
-        if key == 'userId':
-            iduser = value
-    if find_inExcel(event.message.text) != None:
-        row_value = find_inExcel(event.message.text)
-        backtext = str(row_value[2]) + ' ราคา = ' + str(row_value[4]) + ' บาท'
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=backtext))
-    elif event.message.text.upper() == 'GETID':
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='กรุณานำรหัสดังต่อไปนี้ให้กับ Admin\n' + iduser))
+    if find_inExcel(event.message.text, 0,"user.xlsx") != None:
+        soruser = eval(str(event.source))
+        for key, value in soruser.items():
+            if key == 'userId':
+                iduser = value
+        if find_inExcel(event.message.text, 1,"testdatabase.xlsx") != None:
+            row_value = find_inExcel(event.message.text, 1,"testdatabase.xlsx")
+            backtext = str(row_value[2]) + ' ราคา = ' + str(row_value[4]) + ' บาท'
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=backtext))
+        elif event.message.text.upper() == 'GETID':
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=iduser))
 
 
 if __name__ == "__main__":
-    
-    open_file(path)
     app.run()
