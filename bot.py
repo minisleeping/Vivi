@@ -42,7 +42,7 @@ def find_inExcel(Value):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     soruser = str(event.source)
-    for key, value in soruser.iteritems():
+    for key, value in soruser.items():
         if key == 'userId':
             iduser = value
     print (iduser)
