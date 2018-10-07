@@ -46,7 +46,7 @@ def find_inExcel(Value):
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=str(find_inExcel(event.message.text))))
+        TextSendMessage(text=str(sheet.cell_value(0, 0))))
 
 
 if __name__ == "__main__":
