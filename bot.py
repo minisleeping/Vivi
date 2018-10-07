@@ -41,7 +41,8 @@ def find_inExcel(Value):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    print find_inExcel(event.message.text)
+    vltext = find_inExcel(event.message.text)
+    print (vltext)
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text))
