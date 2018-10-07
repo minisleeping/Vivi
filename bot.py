@@ -37,7 +37,7 @@ def find_inExcel(Value):
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
         print (row_value)
-        if row_value[2] == float(Value):
+        if row_value[1] == float(Value):
             return row_value
 
 @handler.add(MessageEvent, message=TextMessage)
