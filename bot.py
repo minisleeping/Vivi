@@ -30,13 +30,10 @@ def webhook():
 
     return 'OK'
 
-def open_file(path):
-    global sheet
+def find_inExcel(Value):
+    path = "testdatabase.xlsx"
     wb = xlrd.open_workbook(path)
     sheet = wb.sheet_by_index(0)
-
-def find_inExcel(Value):
-    global sheet
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
         if row_value[2] == Value:
@@ -46,10 +43,10 @@ def find_inExcel(Value):
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=str(sheet.cell_value(0, 0))))
+        TextSendMessage(text=find_inExcel(event.message.text)))
 
 
 if __name__ == "__main__":
-    path = "testdatabase.xlsx"
+    
     open_file(path)
     app.run()
