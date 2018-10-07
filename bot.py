@@ -40,11 +40,11 @@ def find_inExcel(Value, col, path):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if find_inExcel(event.message.text, 0,"user.xlsx") != None:
-        soruser = eval(str(event.source))
-        for key, value in soruser.items():
-            if key == 'userId':
-                iduser = value
+    soruser = eval(str(event.source))
+    for key, value in soruser.items():
+        if key == 'userId':
+            iduser = value
+    if find_inExcel(iduser, 0,"user.xlsx") != None:
         if find_inExcel(event.message.text, 1,"testdatabase.xlsx") != None:
             row_value = find_inExcel(event.message.text, 1,"testdatabase.xlsx")
             backtext = str(row_value[2]) + ' ราคา = ' + str(row_value[4]) + ' บาท'
