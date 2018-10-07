@@ -41,7 +41,7 @@ def find_inExcel(Value):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if find_inExcel(event.message.text) != none:
+    if find_inExcel(event.message.text) != None:
         row_value = find_inExcel(event.message.text)
         backtext = str(row_value[2]) + ' ราคา = ' + str(row_value[4] + ' บาท') 
         line_bot_api.reply_message(
