@@ -36,18 +36,21 @@ def find_inExcel(Value):
     sheet = wb.sheet_by_index(0)
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
-        print (row_value)
         if row_value[1] == float(Value):
             return row_value
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    row_value = find_inExcel(event.message.text)
-    print (row_value)
-    backtext = str(row_value[2]) + ' price is ' + str(row_value[4]) 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=backtext))
+    if find_inExcel(event.message.text) != none:
+        row_value = find_inExcel(event.message.text)
+        backtext = str(row_value[2]) + ' ราคา = ' + str(row_value[4] + ' บาท') 
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=backtext))
+    elif event.message.text.upper() == 'REQUESTBOT':
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='กรุณานำรหัสดังต่อไปนี้ให้กับ Admin\n' + event.source.userId))
 
 
 if __name__ == "__main__":
