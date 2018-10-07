@@ -37,16 +37,16 @@ def find_inExcel(Value):
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
         print (row_value)
-        if row_value[2] == Value:
-            return str(row_value[4])
+        if row_value[2] == float(Value):
+            return row_value
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    vltext = find_inExcel(event.message.text)
-    print (vltext)
+    row_value = find_inExcel(event.message.text)
+    backtext = row_value[2] + ' ราคา ' + str(row_value[4]) 
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=backtext))
 
 
 if __name__ == "__main__":
