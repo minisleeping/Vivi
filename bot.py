@@ -32,10 +32,11 @@ def webhook():
 
 def find_inExcel(Value, col, path):
     wb = xlrd.open_workbook(path)
+    TextValue = Value.split()
     sheet = wb.sheet_by_index(0)
     for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
-        if str(row_value[col]).startswith(Value):
+        if TextValue[0] in str(row_value[col]) and TextValue[1] in str(row_value[col]):
             return row_value
 
 @handler.add(MessageEvent, message=TextMessage)
@@ -49,9 +50,9 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=iduser))
     if find_inExcel(iduser, 0,"user.xlsx") != None:
-        if find_inExcel(event.message.text, 1,"testdatabase.xlsx") != None:
-            row_value = find_inExcel(event.message.text, 1,"testdatabase.xlsx")
-            backtext = str(row_value[2]) + ' ราคา = ' + str(row_value[4]) + ' บาท'
+        if find_inExcel(event.message.text, 2,"testdatabase.xlsx") != None:
+            row_value = find_inExcel(event.message.text, 2,"testdatabase.xlsx")
+            backtext = str(row_value[2]) + ' ยอดคงเหลือ = ' + str(row_value[6]) + str(row_value[7])
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=backtext))
