@@ -32,14 +32,18 @@ def webhook():
 
 def find_inExcel(Value, col, path):
     wb = xlrd.open_workbook(path)
-    tv = Value.split()
-    print (tv)
-    TextValue1,TextValue2 = Value.split()
+    TextValue = Value.split()
     sheet = wb.sheet_by_index(0)
-    for row_num in range(sheet.nrows):
+    if TextValue.len() == 1:
+        for row_num in range(sheet.nrows):
         row_value = sheet.row_values(row_num)
-        if TextValue1 in str(row_value[col]) and TextValue2 in str(row_value[col]):
+        if TextValue[0] in str(row_value[col]):
             return row_value
+    Elif TextValue.len() == 2:
+        for row_num in range(sheet.nrows):
+            row_value = sheet.row_values(row_num)
+            if TextValue[0] in str(row_value[col]) and TextValue[1] in str(row_value[col]):
+                return row_value
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
