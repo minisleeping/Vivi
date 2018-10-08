@@ -36,9 +36,9 @@ def find_inExcel(Value, col, path):
     sheet = wb.sheet_by_index(0)
     if TextValue.len() == 1:
         for row_num in range(sheet.nrows):
-        row_value = sheet.row_values(row_num)
-        if TextValue[0] in str(row_value[col]):
-            return row_value
+            row_value = sheet.row_values(row_num)
+            if TextValue[0] in str(row_value[col]):
+                return row_value
     elif TextValue.len() == 2:
         for row_num in range(sheet.nrows):
             row_value = sheet.row_values(row_num)
