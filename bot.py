@@ -44,6 +44,10 @@ def handle_message(event):
     for key, value in soruser.items():
         if key == 'userId':
             iduser = value
+    if event.message.text.upper() == 'GETID':
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=iduser))
     if find_inExcel(iduser, 0,"user.xlsx") != None:
         if find_inExcel(event.message.text, 1,"testdatabase.xlsx") != None:
             row_value = find_inExcel(event.message.text, 1,"testdatabase.xlsx")
@@ -51,10 +55,6 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=backtext))
-        elif event.message.text.upper() == 'GETID':
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=iduser))
 
 
 if __name__ == "__main__":
