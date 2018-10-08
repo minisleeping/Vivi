@@ -32,6 +32,7 @@ def webhook():
 
 def find_inExcel(Value, col, path):
     wb = xlrd.open_workbook(path)
+    print (Value.split())
     TextValue1,TextValue2 = Value.split()
     sheet = wb.sheet_by_index(0)
     for row_num in range(sheet.nrows):
