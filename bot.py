@@ -39,7 +39,7 @@ def find_inExcel(Value, col, path):
         row_value = sheet.row_values(row_num)
         if TextValue[0] in str(row_value[col]):
             return row_value
-    Elif TextValue.len() == 2:
+    elif TextValue.len() == 2:
         for row_num in range(sheet.nrows):
             row_value = sheet.row_values(row_num)
             if TextValue[0] in str(row_value[col]) and TextValue[1] in str(row_value[col]):
