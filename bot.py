@@ -34,12 +34,12 @@ def find_inExcel(Value, col, path):
     wb = xlrd.open_workbook(path)
     TextValue = Value.split()
     sheet = wb.sheet_by_index(0)
-    if TextValue.len() == 1:
+    if len(TextValue) == 1:
         for row_num in range(sheet.nrows):
             row_value = sheet.row_values(row_num)
             if TextValue[0] in str(row_value[col]):
                 return row_value
-    elif TextValue.len() == 2:
+    elif len(TextValue) == 2:
         for row_num in range(sheet.nrows):
             row_value = sheet.row_values(row_num)
             if TextValue[0] in str(row_value[col]) and TextValue[1] in str(row_value[col]):
